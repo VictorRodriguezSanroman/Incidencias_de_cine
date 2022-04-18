@@ -3,6 +3,39 @@ footer{
     
  }
  #cuerpo{   
+    
     padding-top: 80px;
-    padding-bottom: 80px;
+    background-color: rgb(175, 197, 206);
+  }
+  #barra, footer{
+    background-color: rgb(32, 100, 128);
+    color: white;
+ }
+  .parrilla{
+      height: 100px;
+      background-color:#C4DBC1;
+  }
+
+  #fondo{
+    background-image: url("../img/fondo1.jpg");
+    color: #FFFFFF;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  #logeo{
+      margin:  0 auto;
+      padding:20px;
+      border: 1px solid white;
+      width: 400px;
+      background-color: white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+  }
+
+  #logeo > div{
+      padding:10px;
   }

@@ -3,8 +3,8 @@
 
     
 
-    <footer class="px-2 py-2 fixed-bottom bg-dark">
-        <span class="text-muted">Sistema de incidencias realizado por
+    <footer class="px-2 py-2 fixed-bottom">
+        <span>Sistema de incidencias realizado por
             <a class="text-white" target="_blank" href="https://linkedin.com/in/victor-r-sanroman">Víctor R.</a>
             &nbsp;|&nbsp;
             <a target="_blank" class="text-white" target="_blank" href="https://github.com/VictorRodriguezSanroman">
