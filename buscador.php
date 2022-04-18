@@ -1,14 +1,16 @@
 <?php
-    /* include_once 'header.php';
+
+    include_once 'header.php';
+    /* 
     include_once 'nav.php'; */
 
  if(isset($_POST['buscar'])){
-    conexionBBDD();
+    conexionBaseDatos();
     buscador();
     
-    $resultado = mysqli_query(conexionBBDD(),buscador());
+    $resultado = mysqli_query(conexionBaseDatos(),buscador());
  }
- if(mysqli_query(conexionBBDD(),buscador())){
+ if(mysqli_query(conexionBaseDatos(),buscador())){
     ?>
         <div class="col-lg-8 p-3 text-center" style="margin: 0 auto">
             <span>Resultados encontrados: <?php echo mysqli_num_rows($resultado) ?></span>
@@ -17,7 +19,7 @@
                     <tr>
                         <?php
                             //Cabecera de la tabla
-                            $cabecera = array("DNI","NOMBRE","CURSO","CUENTA CORRIENTE", "MESA");
+                            $cabecera = array("ID","NOMBRE","APELLIDO","USUARIO","PASSWORD", "PUESTO");
                             foreach($cabecera as $dato){
                                 echo "<td class='fw-bold'>" . $dato . "</td>";
                             }
@@ -40,6 +42,6 @@
     <?php          
             } 
             mysqli_free_result($resultado);
-            mysqli_close(conexionBBDD());   
-            include_once 'footer.php';
+            mysqli_close(conexionBaseDatos());   
+            include_once 'footer.php'; 
     ?>
