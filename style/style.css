@@ -1,5 +1,5 @@
 footer{
-    height: 150px;
+    height: 100px;
     
  }
  #cuerpo{   
@@ -12,8 +12,22 @@ footer{
     color: white;
  }
   .parrilla{
-      height: 100px;
-      background-color:#C4DBC1;
+      /* background-color:#C4DBC1; */
+      text-align: center;
+      
+  }
+
+  .iconosIndex{
+    width: 125px;
+    margin: 0 auto;
+  }
+  .botonIcons{
+    padding: 0; 
+    border: none; 
+    background: none;
+  }
+  .botonIcons:hover{
+    border: 1px solid;
   }
 
   #fondo{

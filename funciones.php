@@ -48,4 +48,8 @@
             header("Location:login.php");
         }
      }
+
+     function salirLogin(){
+         setcookie('acceso','salir',time()-1);
+     }
 ?>

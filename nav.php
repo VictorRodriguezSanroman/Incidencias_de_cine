@@ -37,6 +37,7 @@
                         </ul>
                     </li>
                 </ul>
+                <?php print $_COOKIE['acceso'] . '<a href="borrar_cookie.php"> (Salir)</a>'; ?>
                 <form class="d-flex" action="buscador.php" method="post">
                     <input class="form-control me-2" type="search" placeholder="Escribe palabras clave" aria-label="Search" name="palabraClave">
                     <button class="btn btn-outline-primary" type="submit"name="buscar">Buscar</button>
