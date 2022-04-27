@@ -1,14 +1,23 @@
 footer{
-    height: 100px;
-    
+    height: 150px;
+ }
+
+ *{
+   font-family: Helvetica, sans-serif;
+ }
+
+ #prueba{
+   z-index: 10px;
+   left: 10px;
  }
  #cuerpo{   
     
-    padding-top: 80px;
-    background-color: rgb(175, 197, 206);
+    padding-top: 100px;
+    /* background-color: rgb(175, 197, 206); */
+    /* padding-bottom: 150px; */
   }
   #barra, footer{
-    background-color: rgb(32, 100, 128);
+    /* background-color: rgb(32, 100, 128); */
     color: white;
  }
   .parrilla{
@@ -26,9 +35,20 @@ footer{
     border: none; 
     background: none;
   }
-  .botonIcons:hover{
+  /* .botonIcons:hover{
     border: 1px solid;
+  } */
+
+  .botonesPrincipales{
+    margin:  0 auto;
+    border: 1px solid;
+    padding: 10px;
+    width: 40%;
+    border-radius:20px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.6);
+    background-color: #FFFFFF;
   }
+  
 
   #fondo{
     background-image: url("../img/fondo1.jpg");
@@ -43,9 +63,9 @@ footer{
   #logeo{
       margin:  0 auto;
       padding:20px;
-      border: 1px solid white;
+      /* border: 1px solid white; */
       width: 400px;
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.8);
       border-radius: 5px;
       margin-bottom: 10px;
   }

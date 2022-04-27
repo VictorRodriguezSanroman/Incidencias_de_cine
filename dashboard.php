@@ -40,7 +40,7 @@
                     <span>Nueva incidencia</span>
                 </div>
                 <div class="col">
-                    <a href="registro.php"><button class="btn btn-primary">+</button></a>
+                    <a href="index.php"><button class="btn btn-primary">+</button></a>
                 </div>
             </div>
             <div class="row p-3">

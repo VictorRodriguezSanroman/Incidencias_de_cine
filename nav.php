@@ -1,11 +1,11 @@
-<body id="cuerpo">
-<nav id="barra" class="navbar nav-tabs navbar-expand-lg navbar-light fixed-top">
+<body id="cuerpo" class="bg-light">
+<nav id="barra" class="navbar nav-tabs navbar-expand-lg navbar-light bg-primary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">
-                <!-- <img class="img-fluid" style="max-width: 50px" src="img/#" loading="lazy"> -->
-                LOGO
+            <a class="navbar-brand" href="index.php" style="margin: 0 auto;">
+                <img class="img-fluid" style="max-width: 80px" src="img/logo.png" loading="lazy">
+                
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarScroll">
@@ -37,11 +37,13 @@
                         </ul>
                     </li>
                 </ul>
-                <?php print $_COOKIE['acceso'] . '<a href="borrar_cookie.php"> (Salir)</a>'; ?>
+                
+                
                 <form class="d-flex" action="buscador.php" method="post">
                     <input class="form-control me-2" type="search" placeholder="Escribe palabras clave" aria-label="Search" name="palabraClave">
-                    <button class="btn btn-outline-primary" type="submit"name="buscar">Buscar</button>
+                    <!-- <button class="btn btn-outline-primary" type="submit"name="buscar">Buscar</button> -->
                 </form>
-            </div>
+                <div id="prueba"><?php print $_COOKIE['acceso'] . '<a href="borrar_cookie.php"> (Salir)</a>'; ?></div>
+            </div> 
         </div>
     </nav>
