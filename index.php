@@ -45,7 +45,7 @@
             </div>
             <div class="row p-3">
                 <div class="col">
-                    <p style="text-align:justify;">"lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonumy eirmod tempor"</p>
+                    <p style="text-align:justify;" id="frases">"El hombre cauto jamás deplora el mal presente; emplea el presente en prevenir las aflicciones futuras"</p>
                 </div>
             </div>
                 

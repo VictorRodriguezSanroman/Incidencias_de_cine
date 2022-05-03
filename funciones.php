@@ -52,4 +52,80 @@
      function salirLogin(){
          setcookie('acceso','salir',time()-1);
      }
+
+     function alta_incidente(){
+        conexionBaseDatos();
+
+        $titulo = $_POST['titulo'];
+        $fecha =  $_POST['fecha'];
+        $autor =  $_POST['autor'];
+        $lugar = $_POST['lugarIncidente'];
+        $detalles = $_POST['descripcion'];
+        $foto = $_FILES['foto']['name'];
+        
+        
+         /* print var_dump($foto); */
+        ($foto[0] === "")? $doc = 'no':  $doc = 'sí';
+
+
+        $busquedaUltimoId = "SELECT MAX(ID) FROM IMAGEN";
+
+        
+        $resultado = conexionBaseDatos()->query($busquedaUltimoId);
+        
+        while ($registro = mysqli_fetch_row($resultado)){
+            if( $registro[0] == NULL){
+                $id = "IM-1";
+            }else{
+                $arrayDelRegistro = explode("-", $registro[0]);
+                $registroNumero =intval($arrayDelRegistro[1]);
+                $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
+            }
+            
+        }
+        
+            
+       
+        
+
+        //SEntencia para introducir los datos
+        $sentencia = "INSERT INTO IMAGEN VALUES ('$id', '$titulo','$fecha','$autor','$lugar','$detalles', '$doc')";
+        echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
+        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+            Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>' : 
+        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
+            Faltan campos por rellenar.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';   
+        mysqli_close(conexionBaseDatos()); 
+        subeFoto($id,$foto);
+        
+     }
+
+     function subeFoto($id,$foto){
+        //definimos la carpeta destino
+        $carpetaDestino="img/imagenes_incidencias/";
+        //si hay algun archivo que subir
+        if(isset($_FILES["foto"]) && $_FILES["foto"]["name"][0]){
+            //recorremos todos los arhivos que se han subido
+            for($i=0;$i<count($_FILES["foto"]["name"]);$i++){
+                //si es un formato de imagen
+                if($_FILES["foto"]["type"][$i]=="image/jpeg" || $_FILES["foto"]["type"][$i]=="image/pjpeg" || $_FILES["foto"]["type"][$i]=="image/gif" || $_FILES["foto"]["type"][$i]=="image/png"){
+                    //si exsite la carpeta o se ha creado
+                    if(file_exists($carpetaDestino) || @mkdir($carpetaDestino)){
+                        $origen=$_FILES["foto"]["tmp_name"][$i];
+                        $destino=$carpetaDestino.$_FILES["foto"]["name"][$i];
+                        //movemos el archivo
+                        @move_uploaded_file($origen, $destino);
+                    }
+                }
+            }
+            //Renombramos el archivo con el mismo nombre que la incidencia 
+            rename ("img/imagenes_incidencias/" . $foto[0], "img/imagenes_incidencias/img_".$id.".jpg");
+        }
+
+        
+    }
 ?>

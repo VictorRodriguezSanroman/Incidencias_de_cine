@@ -3,39 +3,38 @@
     include_once 'nav.php';
     
     compruebaCookie();
-    $eleccion = $_POST['incidencia'];
+    (isset($_POST['incidencia'])) ? $eleccion = $_POST['incidencia'] : $eleccion = '';
 ?>
 <main class= "container-fluid">
-    <form action="" class="form">
-        <div>
-            <input type="text" placeholder="<?php echo $eleccion; ?>">
+    <form method="post" class="form"  enctype="multipart/form-data">
+            <input type="text" placeholder="<?php echo $eleccion; ?>" id="titulo" name="titulo">
         </div>
         <div>
             <input type="date" name="fecha" id="fecha" value="<?php echo date("Y-m-d"); ?>">
         </div>
         <div>
-            <input type="text" placeholder="Persona que rellena este formulario">
+            <input type="text" placeholder="Persona que rellena este formulario" id="autor" name="autor">
         </div>
         <div>
             <label for="sala">Sala/s afectada/s: </label><br>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="sala1" id="sala1">
+                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala1" value="Sala 1">
                 <label for="sala1">Sala 1</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="sala2" id="sala2">
+                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala2" value="Sala 2">
                 <label for="sala2">Sala 2</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="sala3" id="sala3">
+                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala3" value="Sala 3">
                 <label for="sala3">Sala 3</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="sala4" id="sala4">
+                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala4" value="Sala 4">
                 <label for="sala4">Sala 4</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="sala5" id="sala5">
+                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala5" value="Sala 5">
                 <label for="sala5">Sala 5</label>
             </div>
         </div>
@@ -45,15 +44,20 @@
         
         <div>
             <label for="adjuntos">¿Algún documento a añadir?</label><br>
-            <input type="file">
+            <input class="archivo" type="file" id="foto" name="foto[]">
         </div>
         <div>
-            <input class="btn btn-primary" type="button" name="botonDeArchivar" id="botonDeArchivar" value="Guardar">
+            <input class="btn btn-primary" type="submit" name="botonDeArchivar" id="botonDeArchivar" value="Guardar">
         </div>
     </form>
 </main>
 
+<?php 
+    if(isset($_POST['botonDeArchivar'])){ 
+        alta_incidente();
 
-<?php
+    }
+
+
     include_once 'footer.php';
 ?>
