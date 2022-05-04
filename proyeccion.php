@@ -1,8 +1,8 @@
 <?php
-    include_once 'header.php';
+    include_once 'head.php';
     include_once 'nav.php';
-    
     compruebaCookie();
+
     (isset($_POST['incidencia'])) ? $eleccion = $_POST['incidencia'] : $eleccion = '';
 ?>
 <main class= "container-fluid">
@@ -55,9 +55,6 @@
 <?php 
     if(isset($_POST['botonDeArchivar'])){ 
         alta_incidente();
-
     }
-
-
     include_once 'footer.php';
 ?>

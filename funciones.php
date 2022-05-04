@@ -81,13 +81,8 @@
                 $registroNumero =intval($arrayDelRegistro[1]);
                 $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
             }
-            
         }
         
-            
-       
-        
-
         //SEntencia para introducir los datos
         $sentencia = "INSERT INTO IMAGEN VALUES ('$id', '$titulo','$fecha','$autor','$lugar','$detalles', '$doc')";
         echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
@@ -100,8 +95,7 @@
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';   
         mysqli_close(conexionBaseDatos()); 
-        subeFoto($id,$foto);
-        
+        subeFoto($id,$foto);  
      }
 
      function subeFoto($id,$foto){
@@ -125,7 +119,52 @@
             //Renombramos el archivo con el mismo nombre que la incidencia 
             rename ("img/imagenes_incidencias/" . $foto[0], "img/imagenes_incidencias/img_".$id.".jpg");
         }
+    }
 
-        
+    function numeroRegistros($tabla){
+        conexionBaseDatos();
+        $sentencia = "SELECT COUNT(ID) FROM " . $tabla;
+        $resultado = conexionBaseDatos() -> query($sentencia);
+        if (mysqli_query(conexionBaseDatos(),$sentencia)){
+            while($registro = mysqli_fetch_row($resultado)){
+                return  $registro[0];
+            };     
+        }     
+    }
+    $campos = array("IMAGEN","ROBOS","INSTALACIONES","CLIENTES","PRL");
+    function calculoPorcentaje($tabla, $campos){
+        $registrosTotales = null;
+        foreach($campos as $campo){
+            $registrosTotales += numeroRegistros($campo);//Sumna total de todas las incidencias 
+        }
+            $porcentaje = (numeroRegistros($tabla) * 100) / $registrosTotales;//Calculo porcentaje sobre una tabla en concreto (en base al total de incidencias)
+        return $porcentaje;
+    }
+    
+
+    function ultimosRegistros($tipo) {
+        $sentencia = "SELECT ID, asunto, fecha FROM " . $tipo . " WHERE ID = (SELECT MAX(ID) FROM " . $tipo.")" ;
+        $resultado = mysqli_query(conexionBaseDatos(), $sentencia);
+
+        while($registro = mysqli_fetch_row($resultado)){
+            print '<tr>';
+                foreach($registro as $valor){
+                    print '<td>'.$valor.'</td>';
+                }
+                print '<td>' . $tipo . '</td>
+                       <td><button type="button" class="btn btn-warning btn-sm text-white d-none d-md-block">PENDIENTE</button></td>
+                        <td>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button>
+                                </div>
+                            </div>
+                        </td>
+                ';
+            print '</tr>';
+        }
     }
 ?>

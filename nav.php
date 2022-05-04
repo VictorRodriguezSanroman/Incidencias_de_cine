@@ -43,7 +43,7 @@
                     <input class="form-control me-2" type="search" placeholder="Escribe palabras clave" aria-label="Search" name="palabraClave">
                     <!-- <button class="btn btn-outline-primary" type="submit"name="buscar">Buscar</button> -->
                 </form>
-                <div id="prueba"><?php print $_COOKIE['acceso'] . '<a href="borrar_cookie.php"> (Salir)</a>'; ?></div>
+                <div id="prueba">Bienvenido <?php print $_COOKIE['acceso'] . '<a href="borrar_cookie.php"> (Salir)</a>'; ?></div>
             </div> 
         </div>
     </nav>
