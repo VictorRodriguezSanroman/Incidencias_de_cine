@@ -81,14 +81,29 @@
         </div>
 
         <div class="col-lg m-4 parrilla">
-                <form action="proyeccion.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
+                <form action="informes.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
                     <button class="botonIcons" name="incidencia" value="varios">
-                        <img type="submit" src="img/icons/interrogation.png" class="iconosIndex" alt="Proyector">
+                        <img type="submit" src="img/icons/informes.png" class="iconosIndex" alt="Proyector">
                     </button>
-                    <br><br><br>
-                    <!-- <select name="incidencia" class="form-select" aria-label="Default select example" id="PRL">
+                    <br>
+                    <select name="informes" class="form-select" aria-label="Default select example" id="informes">
                         <option selected disabled>Selecciona una opción</option>    
-                    </select>  -->  
+                        <optgroup label="Por tipo">
+                            <option value="Imagen">Imagen</option>
+                            <option value="Clientes">Incidencias clientes</option>
+                            <option value="Robos">Robo/atentado</option>
+                            <option value="Instalaciones">Instalaciones</option>
+                            <option value="PRL">PRL</option>
+                        </optgroup>
+                        <optgroup label="Por fechas">
+                            <option value="fechas">Rango de fechas</option>
+                        </optgroup>
+                        <optgroup label="Por prioridad">
+                            <option value="Alta">Alta</option>
+                            <option value="Alta">Media</option>
+                            <option value="Baja">Baja</option>
+                        </optgroup>
+                    </select>   
                 </form>   
         </div>
         

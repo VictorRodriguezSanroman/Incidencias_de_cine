@@ -73,3 +73,7 @@ footer{
   #logeo > div{
       padding:10px;
   }
+
+  a:link, a:visited, a:active {
+  text-decoration:none;
+  }

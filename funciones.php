@@ -131,7 +131,9 @@
             };     
         }     
     }
+    
     $campos = array("IMAGEN","ROBOS","INSTALACIONES","CLIENTES","PRL");
+
     function calculoPorcentaje($tabla, $campos){
         $registrosTotales = null;
         foreach($campos as $campo){
@@ -143,7 +145,7 @@
     
 
     function ultimosRegistros($tipo) {
-        $sentencia = "SELECT ID, asunto, fecha FROM " . $tipo . " WHERE ID = (SELECT MAX(ID) FROM " . $tipo.")" ;
+        $sentencia = "SELECT ID, asunto, fecha FROM " . $tipo . " WHERE FECHA = (SELECT MAX(FECHA) FROM " . $tipo.")" ;
         $resultado = mysqli_query(conexionBaseDatos(), $sentencia);
 
         while($registro = mysqli_fetch_row($resultado)){
@@ -156,10 +158,10 @@
                         <td>
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button>
+                                    <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tipo.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
                                 </div>
                                 <div class="col">
-                                    <button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button>
+                                    <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tipo.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
                                 </div>
                             </div>
                         </td>
