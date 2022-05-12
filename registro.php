@@ -81,7 +81,7 @@
         </div>
 
         <div class="col-lg m-4 parrilla">
-                <form action="informes.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
+                <form action="cookie_informes.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
                     <button class="botonIcons" name="incidencia" value="varios">
                         <img type="submit" src="img/icons/informes.png" class="iconosIndex" alt="Proyector">
                     </button>
@@ -100,7 +100,7 @@
                         </optgroup>
                         <optgroup label="Por prioridad">
                             <option value="Alta">Alta</option>
-                            <option value="Alta">Media</option>
+                            <option value="Media">Media</option>
                             <option value="Baja">Baja</option>
                         </optgroup>
                     </select>   

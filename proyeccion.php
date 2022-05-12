@@ -16,6 +16,13 @@
             <input type="text" placeholder="Persona que rellena este formulario" id="autor" name="autor">
         </div>
         <div>
+            <select name="prioridad" class="form-select" aria-label="Default select example" id="prioridad">
+                        <option value="baja">baja</option>
+                        <option value="media">media</option>
+                        <option value="alta">alta</option>
+            </select>          
+        </div>
+        <div>
             <label for="sala">Sala/s afectada/s: </label><br>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="lugarIncidente" id="sala1" value="Sala 1">

@@ -59,6 +59,7 @@
         $titulo = $_POST['titulo'];
         $fecha =  $_POST['fecha'];
         $autor =  $_POST['autor'];
+        $prioridad = $_POST['prioridad'];
         $lugar = $_POST['lugarIncidente'];
         $detalles = $_POST['descripcion'];
         $foto = $_FILES['foto']['name'];
@@ -84,7 +85,7 @@
         }
         
         //SEntencia para introducir los datos
-        $sentencia = "INSERT INTO IMAGEN VALUES ('$id', '$titulo','$fecha','$autor','$lugar','$detalles', '$doc')";
+        $sentencia = "INSERT INTO IMAGEN VALUES ('$id', '$titulo','$fecha','$autor','$prioridad','$lugar','$detalles', '$doc')";
         echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
         '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
             Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
@@ -144,17 +145,43 @@
     }
     
 
-    function ultimosRegistros($tipo) {
-        $sentencia = "SELECT ID, asunto, fecha FROM " . $tipo . " WHERE FECHA = (SELECT MAX(FECHA) FROM " . $tipo.")" ;
+    function resultadoTablas($tabla,$sentencia) {
         $resultado = mysqli_query(conexionBaseDatos(), $sentencia);
 
         while($registro = mysqli_fetch_row($resultado)){
             print '<tr>';
                 foreach($registro as $valor){
-                    print '<td>'.$valor.'</td>';
+                    print '<td class=' . $valor .'>'.$valor.'</td>';
+                }
+                print '<td>' . $tabla . '</td>
+                       <td><button type="button" class="btn btn-info btn-sm text-white d-none d-md-block">PENDIENTE</button></td>
+                        <td>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
+                                </div>
+                                <div class="col">
+                                    <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
+                                </div>
+                            </div>
+                        </td>
+                ';
+            print '</tr>';
+        }
+    }
+
+    //Está en el index
+    /* function ultimosRegistros($tipo) {
+        $sentencia = "SELECT ID, asunto,prioridad, fecha FROM " . $tipo . " WHERE FECHA = (SELECT MAX(FECHA) FROM " . $tipo.")" ;
+        $resultado = mysqli_query(conexionBaseDatos(), $sentencia);
+
+        while($registro = mysqli_fetch_row($resultado)){
+            print '<tr>';
+                foreach($registro as $valor){
+                    print '<td class=' . $valor .'>'.$valor.'</td>';
                 }
                 print '<td>' . $tipo . '</td>
-                       <td><button type="button" class="btn btn-warning btn-sm text-white d-none d-md-block">PENDIENTE</button></td>
+                       <td><button type="button" class="btn btn-info btn-sm text-white d-none d-md-block">PENDIENTE</button></td>
                         <td>
                             <div class="row align-items-center">
                                 <div class="col">
@@ -168,5 +195,64 @@
                 ';
             print '</tr>';
         }
-    }
+    } */
+
+    //Esta en informes_fechas
+    /* function resultadoBusqueda($tabla,$fechaInicio,$fechaFinal) {
+        $sentencia = "SELECT ID,ASUNTO, FECHA, PRIORIDAD FROM ".$tabla." WHERE FECHA >= '$fechaInicio' AND FECHA <= '$fechaFinal'";
+        $resultado = mysqli_query(conexionBaseDatos(),$sentencia);
+        
+        while ($registro = mysqli_fetch_row($resultado)){
+                
+            echo "<tr>";
+            //Muestra cada uno de los valores de los campos de registro
+            foreach ($registro as $valor){
+                echo "<td class='campo ".$valor."'><a href='ampliar.php'>" . $valor . "</a></td>";
+            }
+
+            print '<td>' . $tabla . '</td><td>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
+                    </div>
+                    <div class="col">
+                        <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
+                    </div>
+                </div>
+            </td>';
+
+
+            echo "</tr>"; 
+        }
+        
+    } */
+
+    /* function resultadoBusquedaPrioridad($tabla,$prioridad) {
+        $sentencia = "SELECT ID,ASUNTO, FECHA, PRIORIDAD FROM ".$tabla." WHERE PRIORIDAD = '$prioridad'";
+        $resultado = mysqli_query(conexionBaseDatos(),$sentencia);
+        
+        while ($registro = mysqli_fetch_row($resultado)){
+                
+            echo "<tr>";
+            //Muestra cada uno de los valores de los campos de registro
+            foreach ($registro as $valor){
+                echo "<td class='campo ".$valor."'><a href='ampliar.php'>" . $valor . "</a></td>";
+            }
+
+            print '<td>' . $tabla . '</td><td>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
+                    </div>
+                    <div class="col">
+                        <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
+                    </div>
+                </div>
+            </td>';
+
+
+            echo "</tr>"; 
+        }
+        
+    } */
 ?>

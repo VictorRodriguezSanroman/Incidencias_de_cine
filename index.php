@@ -60,7 +60,8 @@
                     <thead>
                     <tr class="text-primary">
                       <th scope="col">#ID</th>
-                      <th scope="col">Asunto</th> 
+                      <th scope="col">Asunto</th>
+                      <th scope="col">Prioridad</th> 
                       <th scope="col">Fecha</th>
                       <th scope="col">Tipo</th>
                       <th scope="col" class="d-none d-md-block">Estado</th>
@@ -69,7 +70,10 @@
                     <tbody>
                         <?php    
                             foreach($campos as $titulo){
-                                ultimosRegistros($titulo);
+                                
+                                    $sentencia = "SELECT ID, asunto,prioridad, fecha FROM " . $titulo . " WHERE FECHA = (SELECT MAX(FECHA) FROM " . $titulo.")" ;
+                                    resultadoTablas($titulo,$sentencia);
+                                /* ultimosRegistros($titulo); */
                             }
                         ?>
                     </tbody>

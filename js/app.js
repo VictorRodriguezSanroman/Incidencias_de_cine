@@ -15,4 +15,24 @@ window.addEventListener('load',()=>{
             
         }    
     },3000); //cada 3s la frase cambiará
+
+    let priorRojo = document.querySelectorAll('.ALTA');
+
+    for (let i = 0;i < priorRojo.length;i++) {
+        priorRojo[i].innerHTML = '<button class="btn btn-danger btn-sm text-white d-none d-md-block">ALTA</button>';
+    }
+
+
+    let priorNaranja = document.querySelectorAll('.MEDIA');
+    
+    for (let i = 0;i < priorNaranja.length;i++) {
+        priorNaranja[i].innerHTML = '<button class="btn btn-warning btn-sm text-white d-none d-md-block">MEDIA</button>';
+    }
+
+    let priorVerde = document.querySelectorAll('.BAJA');
+    
+    for (let i = 0;i < priorVerde.length;i++) {
+        priorVerde[i].innerHTML = '<button class="btn btn-success btn-sm text-white d-none d-md-block">BAJA</button>';
+    }
+    
 })

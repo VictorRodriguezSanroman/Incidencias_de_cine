@@ -1,7 +1,9 @@
 footer{
     height: 150px;
  }
-
+main {
+  min-height:790px;
+}
  *{
    font-family: Helvetica, sans-serif;
  }
@@ -77,3 +79,8 @@ footer{
   a:link, a:visited, a:active {
   text-decoration:none;
   }
+
+/* Botones prioridad */
+.btn{
+  width:95px;
+}
