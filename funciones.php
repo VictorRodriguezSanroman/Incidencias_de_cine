@@ -325,7 +325,7 @@
         while($registro = mysqli_fetch_row($resultado)){
             print '<tr>';
                 foreach($registro as $valor){
-                    print '<td class=' . $valor .'>'.$valor.'</td>';
+                    print "<td class='campo ".$valor."'><a href='ampliar.php?id=". $registro[0] ."'>" . $valor . "</a></td>";
                 }
                 print '<td>' . $tabla . '</td>
                        <td><button type="button" class="btn btn-info btn-sm text-white d-none d-md-block">PENDIENTE</button></td>
@@ -429,4 +429,38 @@
         }
         
     } */
+    
+    function desglose($prueba,$id){
+        $sentencia = "SELECT * FROM ".$prueba." WHERE ID = '$id'";
+        $resultado = mysqli_query(conexionBaseDatos(),$sentencia);
+        switch ($prueba) {
+            case $prueba == 'ROBOS':
+                $titulo = ['Id','Título','Persona que rellena el informe','Prioridad','Detalles de lo ocurrido','Fecha','Cantidad sustraida'];
+                break;
+            case $prueba == 'PRL':
+                $titulo = ['Id','Título','Persona que rellena el informe','Prioridad','Trabajador afectado','Detalles de lo ocurrido','Fecha'];
+                break;
+            default:
+                $titulo = ['Id','Título','Fecha','Persona que rellena el informe','Prioridad','Lugar de la incidencia','Detalles de lo ocurrido','¿Fotografías añadidas de los hechos?'];
+                break;
+        }
+        $i = 0;
+        while($registro = mysqli_fetch_row($resultado)){
+            foreach($registro as $campo){
+                print '<h5>'.$titulo[$i].'</h5>';
+                print '<div>'.$campo . '</div>';
+                $i++;
+            }
+            if(isset($registro[7])){
+                if ($registro[7] == 'SI'){
+
+                    print '<div id="foto">
+                            <img src="img/imagenes_incidencias/img_' . $id. '.jpg">
+                        </div>';
+            
+                }
+            }
+            
+        }
+    }
 ?>

@@ -27,6 +27,9 @@ main {
       text-align: center;
       
   }
+  a{
+    color: black;
+  }
 
   .iconosIndex{
     width: 125px;
@@ -107,4 +110,32 @@ main {
   border: 2px solid;
   min-height: 160px; 
   border-radius: 25px;
+}
+
+/* Informes */
+
+#folio>#foto{
+  text-align: center;
+  background-color: black;
+}
+#folio>#foto>img{
+  text-align: center;
+  width: 500px;
+}
+#folio{
+  margin: 0 auto;
+  width: 800px;
+  padding: 20px;
+  border: 1px solid rgba(179,179,179,0.15);
+  margin-bottom: 50px;
+  box-shadow: 10px 10px 10px 10px;
+  border-radius: 5px;
+  background-color: rgb(236,235,235);
+}
+#folio > div {
+  border: 2px solid;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: white;
 }

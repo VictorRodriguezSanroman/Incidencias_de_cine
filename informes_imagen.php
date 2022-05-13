@@ -70,7 +70,7 @@
                         echo "<tr>";
                         //Muestra cada uno de los valores de los campos de registro
                         foreach ($registro as $valor){
-                            echo "<td class='campo ".$valor."'><a href='ampliar.php'>" . $valor . "</a></td>";
+                            echo "<td class='campo ".$valor."'><a href='ampliar.php?id=". $registro[0] ."'>" . $valor . "</a></td>";
                         }
 
                         echo '<td>
