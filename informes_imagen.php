@@ -23,7 +23,7 @@
     buscaRegistros($_COOKIE['informesPrueba']);
         
         function buscaRegistros($tabla){
-            $sentencia ="SELECT * FROM " . $tabla;
+            $sentencia ="SELECT id, asunto, fecha, prioridad FROM " . $tabla;
             $resultado = mysqli_query(conexionBaseDatos(),$sentencia);
 
             //Muestra el número de registros del resultado de la consulta SQL
@@ -36,13 +36,17 @@
                     <tr>
                     <?php
                         //Cabecera de la tabla
-                        if($tabla == 'Imagen'){
+                        $cabecera = array("ID","ASUNTO","FECHA","PRIORIDAD", "ACCIONES");
+                            foreach($cabecera as $dato){
+                                echo "<td class='fw-bold '>" . $dato . "</td>";
+                            }
+                        /* if($tabla == 'Imagen'){
                             $cabecera = array("ID","ASUNTO","FECHA","AUTOR","PRIORIDAD", "LUGAR","DETALLES","IMÁGENES", "ACCIONES");
                             foreach($cabecera as $dato){
                                 echo "<td class='fw-bold '>" . $dato . "</td>";
                             }
                         }else if($tabla == 'Robos'){
-                            $cabecera = array("ID","ASUNTO","FECHA","€ PERDIDOS", "ACCIONES");
+                            $cabecera = array("ID","ASUNTO","AUTOR","PRIORIDAD","DETALLES","FECHA","€ PERDIDOS", "ACCIONES");
                                 foreach($cabecera as $dato){
                                     echo "<td class='fw-bold'>" . $dato . "</td>";
                                 }
@@ -56,7 +60,7 @@
                             foreach($cabecera as $dato){
                                 echo "<th class='fw-bold'>" . $dato . "</th>";
                             }
-                        }
+                        } */
                         
                     ?>
                     </tr>

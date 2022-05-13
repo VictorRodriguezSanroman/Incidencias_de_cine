@@ -3,11 +3,11 @@
     include_once 'nav.php';
     compruebaCookie();
 
-    (isset($_POST['incidencia'])) ? $eleccion = $_POST['incidencia'] : $eleccion = '';
+    /* (isset($_POST['incidencia'])) ? $eleccion = $_POST['incidencia'] : $eleccion = ''; */
 ?>
 <main class= "container-fluid">
     <form method="post" class="form"  enctype="multipart/form-data">
-            <input type="text" placeholder="<?php echo $eleccion; ?>" id="titulo" name="titulo">
+            <input type="text" placeholder="<?php echo $_COOKIE['registro']; ?>" id="titulo" name="titulo">
         </div>
         <div>
             <input type="date" name="fecha" id="fecha" value="<?php echo date("Y-m-d"); ?>">
@@ -60,8 +60,17 @@
 </main>
 
 <?php 
-    if(isset($_POST['botonDeArchivar'])){ 
-        alta_incidente();
+    if(isset($_POST['botonDeArchivar'])){
+        if($_COOKIE['registro'] == 'Problemas en la imagen' || $_COOKIE['registro'] == 'Problemas de Sonido'){
+            alta_incidente();
+        }
+        if($_COOKIE['registro'] == 'Baño averiado' || $_COOKIE['registro'] == 'Goteras' || $_COOKIE['registro'] == 'Fallo eléctrico'){
+            registroInstalaciones();
+        }
+        if($_COOKIE['registro'] == 'Caída' || $_COOKIE['registro'] == 'Intoxicación'){
+            registroClientes();
+        }    
+        
     }
     include_once 'footer.php';
 ?>

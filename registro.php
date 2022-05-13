@@ -4,10 +4,13 @@
     compruebaCookie();
 ?>
 <main class= "container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Registro de incidencias e informes</h1>
+    </div>
     <div class="row">
         <!-- Incidencias en la proyección -->
         <div class="col-lg m-4 parrilla">
-                <form action="proyeccion.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
+                <form action="cookie_formularios.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
                     <button class="botonIcons">
                         <img type="submit" src="img/icons/projector.png" class="iconosIndex" alt="Proyector">
                     </button>
@@ -21,7 +24,7 @@
         </div>
         <!-- Incidencias clientes -->
         <div class="col-lg m-4 parrilla">
-                <form action="proyeccion.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
+                <form action="cookie_formularios.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
                     <button class="botonIcons">
                         <img type="submit" src="img/icons/fallen.png" class="iconosIndex" alt="Proyector">
                     </button>
@@ -37,7 +40,7 @@
     <div class="row">
         <!-- incidencias robo/atentado -->
         <div class="col-lg m-4 parrilla">
-                <form action="proyeccion.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
+                <form action="formulario-robo_atentado.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
                     <button class="botonIcons">
                         <img type="submit" src="img/icons/bomb.png" class="iconosIndex" alt="Proyector">
                     </button>
@@ -51,7 +54,7 @@
         </div>
         <!-- incidencias instalaciones -->
         <div class="col-lg m-4 parrilla">
-                <form action="proyeccion.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
+                <form action="cookie_formularios.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
                     <button class="botonIcons">
                         <img type="submit" src="img/icons/maintenance.png" class="iconosIndex" alt="Proyector">
                     </button>
@@ -68,7 +71,7 @@
     <div class="row">
         <!-- Incidencias PRL -->
         <div class="col-lg m-4 parrilla">
-                <form action="proyeccion.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
+                <form action="formulario-prl.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
                     <button class="botonIcons">
                         <img type="submit" src="img/icons/laboral.png" class="iconosIndex" alt="Proyector">
                     </button>

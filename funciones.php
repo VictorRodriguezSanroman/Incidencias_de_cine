@@ -99,6 +99,180 @@
         subeFoto($id,$foto);  
      }
 
+     function registroRoboAtentado() {
+        conexionBaseDatos();
+
+        $titulo = $_POST['titulo'];
+        $fecha =  $_POST['fecha'];
+        $autor =  $_POST['autor'];
+        $prioridad = $_POST['prioridad'];
+        $detalles = $_POST['descripcion'];
+        $valor = $_POST['valor'];
+        
+        $busquedaUltimoId = "SELECT MAX(ID) FROM ROBOS";
+
+        
+        $resultado = conexionBaseDatos()->query($busquedaUltimoId);
+        
+        while ($registro = mysqli_fetch_row($resultado)){
+            if( $registro[0] == NULL){
+                $id = "RB-1";
+            }else{
+                $arrayDelRegistro = explode("-", $registro[0]);
+                $registroNumero =intval($arrayDelRegistro[1]);
+                $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
+            }
+        }
+        
+        //SEntencia para introducir los datos
+        $sentencia = "INSERT INTO ROBOS VALUES ('$id', '$titulo','$autor','$prioridad','$detalles','$fecha', '$valor')";
+        echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
+        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+            Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>' : 
+        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
+            Faltan campos por rellenar.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';   
+        mysqli_close(conexionBaseDatos()); 
+     }
+     
+     function registroInstalaciones() {//Es igual a la función de proyeccion
+        conexionBaseDatos();
+
+        $titulo = $_POST['titulo'];
+        $fecha =  $_POST['fecha'];
+        $autor =  $_POST['autor'];
+        $prioridad = $_POST['prioridad'];
+        $lugar = $_POST['lugarIncidente'];
+        $detalles = $_POST['descripcion'];
+        $foto = $_FILES['foto']['name'];
+        
+        
+         /* print var_dump($foto); */
+        ($foto[0] === "")? $doc = 'no':  $doc = 'sí';
+
+
+        $busquedaUltimoId = "SELECT MAX(ID) FROM INSTALACIONES";
+
+        
+        $resultado = conexionBaseDatos()->query($busquedaUltimoId);
+        
+        while ($registro = mysqli_fetch_row($resultado)){
+            if( $registro[0] == NULL){
+                $id = "IN-1";
+            }else{
+                $arrayDelRegistro = explode("-", $registro[0]);
+                $registroNumero =intval($arrayDelRegistro[1]);
+                $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
+            }
+        }
+        
+        //SEntencia para introducir los datos
+        $sentencia = "INSERT INTO INSTALACIONES VALUES ('$id', '$titulo','$fecha','$autor','$prioridad','$lugar','$detalles', '$doc')";
+        echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
+        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+            Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>' : 
+        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
+            Faltan campos por rellenar.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';   
+        mysqli_close(conexionBaseDatos()); 
+        subeFoto($id,$foto);  
+     }
+
+     function registroClientes() {//Es igual a la función de proyeccion
+        conexionBaseDatos();
+
+        $titulo = $_POST['titulo'];
+        $fecha =  $_POST['fecha'];
+        $autor =  $_POST['autor'];
+        $prioridad = $_POST['prioridad'];
+        $lugar = $_POST['lugarIncidente'];
+        $detalles = $_POST['descripcion'];
+        $foto = $_FILES['foto']['name'];
+        
+        
+         /* print var_dump($foto); */
+        ($foto[0] === "")? $doc = 'no':  $doc = 'sí';
+
+
+        $busquedaUltimoId = "SELECT MAX(ID) FROM CLIENTES";
+
+        
+        $resultado = conexionBaseDatos()->query($busquedaUltimoId);
+        
+        while ($registro = mysqli_fetch_row($resultado)){
+            if( $registro[0] == NULL){
+                $id = "CL-1";
+            }else{
+                $arrayDelRegistro = explode("-", $registro[0]);
+                $registroNumero =intval($arrayDelRegistro[1]);
+                $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
+            }
+        }
+        
+        //SEntencia para introducir los datos
+        $sentencia = "INSERT INTO CLIENTES VALUES ('$id', '$titulo','$fecha','$autor','$prioridad','$lugar','$detalles', '$doc')";
+        echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
+        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+            Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>' : 
+        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
+            Faltan campos por rellenar.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';   
+        mysqli_close(conexionBaseDatos()); 
+        subeFoto($id,$foto);  
+     }
+
+     function registroPRL() {//Es igual a la función de proyeccion
+        conexionBaseDatos();
+
+        $titulo = $_POST['titulo'];
+        $fecha =  $_POST['fecha'];
+        $autor =  $_POST['autor'];
+        $afectado = $_POST['afectado'];
+        $prioridad = $_POST['prioridad'];
+        $detalles = $_POST['descripcion'];
+
+        
+    
+
+
+        $busquedaUltimoId = "SELECT MAX(ID) FROM PRL";
+
+        
+        $resultado = conexionBaseDatos()->query($busquedaUltimoId);
+        
+        while ($registro = mysqli_fetch_row($resultado)){
+            if( $registro[0] == NULL){
+                $id = "PR-1";
+            }else{
+                $arrayDelRegistro = explode("-", $registro[0]);
+                $registroNumero =intval($arrayDelRegistro[1]);
+                $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
+            }
+        }
+        
+        //SEntencia para introducir los datos
+        $sentencia = "INSERT INTO PRL VALUES ('$id', '$titulo','$autor','$prioridad','$afectado','$detalles','$fecha')";
+        echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
+        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+            Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>' : 
+        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
+            Faltan campos por rellenar.
+            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';   
+        mysqli_close(conexionBaseDatos()); 
+     }
+
      function subeFoto($id,$foto){
         //definimos la carpeta destino
         $carpetaDestino="img/imagenes_incidencias/";
