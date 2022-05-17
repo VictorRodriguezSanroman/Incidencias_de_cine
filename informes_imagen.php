@@ -12,6 +12,7 @@
     </div>
     <?php
 
+    //Utilizamos if para que, en función de la cookie almacenada nos lleve al informe que deseamos o nos quedemos en este
     if ($_COOKIE['informesPrueba'] == 'fechas'){
         header('Location:informes_fechas.php');
     }
@@ -39,29 +40,7 @@
                         $cabecera = array("ID","ASUNTO","FECHA","PRIORIDAD", "ACCIONES");
                             foreach($cabecera as $dato){
                                 echo "<td class='fw-bold '>" . $dato . "</td>";
-                            }
-                        /* if($tabla == 'Imagen'){
-                            $cabecera = array("ID","ASUNTO","FECHA","AUTOR","PRIORIDAD", "LUGAR","DETALLES","IMÁGENES", "ACCIONES");
-                            foreach($cabecera as $dato){
-                                echo "<td class='fw-bold '>" . $dato . "</td>";
-                            }
-                        }else if($tabla == 'Robos'){
-                            $cabecera = array("ID","ASUNTO","AUTOR","PRIORIDAD","DETALLES","FECHA","€ PERDIDOS", "ACCIONES");
-                                foreach($cabecera as $dato){
-                                    echo "<td class='fw-bold'>" . $dato . "</td>";
-                                }
-                        }else if($tabla == 'Instalaciones' || $tabla == 'PRL'){
-                            $cabecera = array("ID","ASUNTO","PRIORIDAD","FECHA", "ACCIONES");
-                            foreach($cabecera as $dato){
-                                echo "<td class='fw-bold'>" . $dato . "</td>";
-                            }
-                        }else if($tabla == 'Clientes'){
-                            $cabecera = array("ID","ASUNTO","PRIORIDAD","DESCRIPCIÓN","FECHA","ACCIONES");
-                            foreach($cabecera as $dato){
-                                echo "<th class='fw-bold'>" . $dato . "</th>";
-                            }
-                        } */
-                        
+                            }                
                     ?>
                     </tr>
     <?php
@@ -96,14 +75,6 @@
 
     ?>
     
-
-
-
-
-
-    <?php
-
-    ?>
 </main>
 <?php
         

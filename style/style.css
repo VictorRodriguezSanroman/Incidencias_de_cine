@@ -27,9 +27,9 @@ main {
       text-align: center;
       
   }
-  a{
+/*   a{
     color: black;
-  }
+  } */
 
   .iconosIndex{
     width: 125px;
@@ -81,6 +81,7 @@ main {
 
   a:link, a:visited, a:active {
   text-decoration:none;
+  color: black;
   }
 
 /* Botones prioridad */
@@ -138,4 +139,24 @@ main {
   margin-bottom: 20px;
   padding: 10px;
   background-color: white;
+}
+
+/* Formularios de registro */
+.form{
+  margin: 0 auto;
+  width: 55%;
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px ;
+  padding: 20px;
+  margin-bottom: 30px; 
+  margin-top: 20px; 
+  background-color: white;
+
+}
+.cuatroRadios{
+  width: 45%;
+  float: left;
+  padding-left: 20%; 
+  padding-bottom: 20px;
 }

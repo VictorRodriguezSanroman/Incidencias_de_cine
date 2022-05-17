@@ -6,55 +6,79 @@
     /* (isset($_POST['incidencia'])) ? $eleccion = $_POST['incidencia'] : $eleccion = ''; */
 ?>
 <main class= "container-fluid">
-    <form method="post" class="form"  enctype="multipart/form-data">
-            <input type="text" placeholder="<?php echo $_COOKIE['registro']; ?>" id="titulo" name="titulo">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Registro de incidencias</h1>
+    </div>
+    <form method="post" class="form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="titulo"class="h5 form-label">Título de la incidencia:</label>
+            <input type="text" class="form-control" placeholder="<?php echo $_COOKIE['registro']; ?>" id="titulo" name="titulo">
         </div>
-        <div>
-            <input type="date" name="fecha" id="fecha" value="<?php echo date("Y-m-d"); ?>">
+        <div class="mb-3">
+            <label for="fecha"class="h5 form-label">Fecha de lo ocurrido:</label>
+            <input type="date" class="form-control" name="fecha" id="fecha" value="<?php echo date("Y-m-d"); ?>">
         </div>
-        <div>
-            <input type="text" placeholder="Persona que rellena este formulario" id="autor" name="autor">
+        <div class="mb-3">
+            <label for="autor"class="h5 form-label">Persona que registra la incidencia:</label>
+            <input type="text" class="form-control" id="autor" name="autor">
         </div>
-        <div>
+        <div class="mb-3">
+            <label for="prioridad" class="h5 form-label">Prioridad:</label>
             <select name="prioridad" class="form-select" aria-label="Default select example" id="prioridad">
-                        <option value="baja">baja</option>
-                        <option value="media">media</option>
-                        <option value="alta">alta</option>
+                        <option value="baja">BAJA</option>
+                        <option value="media">MEDIA</option>
+                        <option value="alta">ALTA</option>
             </select>          
         </div>
-        <div>
-            <label for="sala">Sala/s afectada/s: </label><br>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala1" value="Sala 1">
-                <label for="sala1">Sala 1</label>
+        <div class="mb-3">
+            <label for="sala" class="h5 form-label">Lugar de la incidencia:</label><br>
+            <div class="cuatroRadios">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="hall" value="Hall">
+                    <label for="lugarIncidente">Hall</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="pasillos" value="Pasillos">
+                    <label for="lugarIncidente">Pasillos</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="baños" value="Baños">
+                    <label for="lugarIncidente">Baños</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="sala1" value="Sala 1">
+                    <label for="lugarIncidente">Sala 1</label>
+                </div>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala2" value="Sala 2">
-                <label for="sala2">Sala 2</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala3" value="Sala 3">
-                <label for="sala3">Sala 3</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala4" value="Sala 4">
-                <label for="sala4">Sala 4</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="lugarIncidente" id="sala5" value="Sala 5">
-                <label for="sala5">Sala 5</label>
+            <div class="cuatroRadios">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="sala2" value="Sala 2">
+                    <label for="lugarIncidente">Sala 2</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="sala3" value="Sala 3">
+                    <label for="lugarIncidente">Sala 3</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="sala4" value="Sala 4">
+                    <label for="lugarIncidente">Sala 4</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="sala5" value="Sala 5">
+                    <label for="lugarIncidente">Sala 5</label>
+                </div>
             </div>
         </div>
-        <div>
-            <textarea name="descripcion" id="Descripcion" cols="30" rows="10">Detalla aquí la incidencia ocurrida</textarea>
+        <div class="mb-3">
+            <textarea name="descripcion" class="h5 p-3 form-control" id="descripcion"  rows="10" placeholder="Detalla aquí la incidencia ocurrida..."></textarea>
         </div>
         
-        <div>
-            <label for="adjuntos">¿Algún documento a añadir?</label><br>
-            <input class="archivo" type="file" id="foto" name="foto[]">
+        <div class="mb-3">
+            <label for="adjuntos" class="h5 form-label">¿Algún documento a añadir?</label><br>
+            <input class="archivo form-control" type="file" id="foto" name="foto[]">
         </div>
-        <div>
-            <input class="btn btn-primary" type="submit" name="botonDeArchivar" id="botonDeArchivar" value="Guardar">
+        <div class="mb-3">
+            <input class="btn btn-primary text-center form-control" type="submit" name="botonDeArchivar" id="botonDeArchivar" value="GUARDAR">
         </div>
     </form>
 </main>

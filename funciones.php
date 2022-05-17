@@ -307,7 +307,7 @@
         }     
     }
     
-    $campos = array("IMAGEN","ROBOS","INSTALACIONES","CLIENTES","PRL");
+    $campos = array("IMAGEN","ROBOS","INSTALACIONES","CLIENTES","PRL");//Array común a todos los informes ya que se trata de un listado con los nombres de las 5 tablas de la base de datos
 
     function calculoPorcentaje($tabla, $campos){
         $registrosTotales = null;
