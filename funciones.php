@@ -11,17 +11,8 @@
          $BBDD = 'incidencias_de_cine';
 
          $conexion = mysqli_connect($host, $user, $password, $BBDD);
-
-         /* mysqli_query($conexion,"SET NAMES 'UTF-8'"); */
          
          return $conexion;
-     }
-
-     function buscador(){
-         //Convertimos lo introducido en un array
-         $palabrasClave = explode(" ",$_POST['palabraClave']);
-         $query = "SELECT * FROM LOGIN WHERE nombre LIKE '%" . $palabrasClave[0] ."%'";
-         return $query;
      }
 
      function login($usuario, $contraseña){
@@ -53,7 +44,7 @@
          setcookie('acceso','salir',time()-1);
      }
 
-     function alta_incidente(){
+     function alta_incidente($campo,$id){
         conexionBaseDatos();
 
         $titulo = $_POST['titulo'];
@@ -63,31 +54,25 @@
         $lugar = $_POST['lugarIncidente'];
         $detalles = $_POST['descripcion'];
         $foto = $_FILES['foto']['name'];
-        
-        
          /* print var_dump($foto); */
         ($foto[0] === "")? $doc = 'no':  $doc = 'sí';
 
-
-        $busquedaUltimoId = "SELECT MAX(ID) FROM IMAGEN";
-
-        
+        $busquedaUltimoId = "SELECT MAX(ID) FROM " . $campo;
+  
         $resultado = conexionBaseDatos()->query($busquedaUltimoId);
         
         while ($registro = mysqli_fetch_row($resultado)){
-            if( $registro[0] == NULL){
-                $id = "IM-1";
-            }else{
+            if( $registro[0] !== NULL){
+            
                 $arrayDelRegistro = explode("-", $registro[0]);
                 $registroNumero =intval($arrayDelRegistro[1]);
                 $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
             }
         }
-        
         //SEntencia para introducir los datos
-        $sentencia = "INSERT INTO IMAGEN VALUES ('$id', '$titulo','$fecha','$autor','$prioridad','$lugar','$detalles', '$doc')";
+        $sentencia = "INSERT INTO " . $campo. " VALUES ('$id', '$titulo','$fecha','$autor','$prioridad','$lugar','$detalles', '$doc')";
         echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
-        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+        '<div class="confirmacion alert alert-primary m-3 col-3" role="alert">
             Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>' : 
@@ -127,7 +112,7 @@
         //SEntencia para introducir los datos
         $sentencia = "INSERT INTO ROBOS VALUES ('$id', '$titulo','$autor','$prioridad','$detalles','$fecha', '$valor')";
         echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
-        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+        '<div class="confirmacion alert alert-primary m-3 col-3" role="alert">
             Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>' : 
@@ -138,99 +123,7 @@
         mysqli_close(conexionBaseDatos()); 
      }
      
-     function registroInstalaciones() {//Es igual a la función de proyeccion
-        conexionBaseDatos();
-
-        $titulo = $_POST['titulo'];
-        $fecha =  $_POST['fecha'];
-        $autor =  $_POST['autor'];
-        $prioridad = $_POST['prioridad'];
-        $lugar = $_POST['lugarIncidente'];
-        $detalles = $_POST['descripcion'];
-        $foto = $_FILES['foto']['name'];
-        
-        
-         /* print var_dump($foto); */
-        ($foto[0] === "")? $doc = 'no':  $doc = 'sí';
-
-
-        $busquedaUltimoId = "SELECT MAX(ID) FROM INSTALACIONES";
-
-        
-        $resultado = conexionBaseDatos()->query($busquedaUltimoId);
-        
-        while ($registro = mysqli_fetch_row($resultado)){
-            if( $registro[0] == NULL){
-                $id = "IN-1";
-            }else{
-                $arrayDelRegistro = explode("-", $registro[0]);
-                $registroNumero =intval($arrayDelRegistro[1]);
-                $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
-            }
-        }
-        
-        //SEntencia para introducir los datos
-        $sentencia = "INSERT INTO INSTALACIONES VALUES ('$id', '$titulo','$fecha','$autor','$prioridad','$lugar','$detalles', '$doc')";
-        echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
-        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
-            Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
-            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>' : 
-        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
-            Faltan campos por rellenar.
-            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';   
-        mysqli_close(conexionBaseDatos()); 
-        subeFoto($id,$foto);  
-     }
-
-     function registroClientes() {//Es igual a la función de proyeccion
-        conexionBaseDatos();
-
-        $titulo = $_POST['titulo'];
-        $fecha =  $_POST['fecha'];
-        $autor =  $_POST['autor'];
-        $prioridad = $_POST['prioridad'];
-        $lugar = $_POST['lugarIncidente'];
-        $detalles = $_POST['descripcion'];
-        $foto = $_FILES['foto']['name'];
-        
-        
-         /* print var_dump($foto); */
-        ($foto[0] === "")? $doc = 'no':  $doc = 'sí';
-
-
-        $busquedaUltimoId = "SELECT MAX(ID) FROM CLIENTES";
-
-        
-        $resultado = conexionBaseDatos()->query($busquedaUltimoId);
-        
-        while ($registro = mysqli_fetch_row($resultado)){
-            if( $registro[0] == NULL){
-                $id = "CL-1";
-            }else{
-                $arrayDelRegistro = explode("-", $registro[0]);
-                $registroNumero =intval($arrayDelRegistro[1]);
-                $id = $arrayDelRegistro[0] . "-" . ($registroNumero + 1);
-            }
-        }
-        
-        //SEntencia para introducir los datos
-        $sentencia = "INSERT INTO CLIENTES VALUES ('$id', '$titulo','$fecha','$autor','$prioridad','$lugar','$detalles', '$doc')";
-        echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
-        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
-            Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
-            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>' : 
-        '<div class="confirmacion alert alert-danger m-3 col-3" role="alert">
-            Faltan campos por rellenar.
-            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';   
-        mysqli_close(conexionBaseDatos()); 
-        subeFoto($id,$foto);  
-     }
-
-     function registroPRL() {//Es igual a la función de proyeccion
+     function registroPRL() {
         conexionBaseDatos();
 
         $titulo = $_POST['titulo'];
@@ -239,10 +132,6 @@
         $afectado = $_POST['afectado'];
         $prioridad = $_POST['prioridad'];
         $detalles = $_POST['descripcion'];
-
-        
-    
-
 
         $busquedaUltimoId = "SELECT MAX(ID) FROM PRL";
 
@@ -262,7 +151,7 @@
         //SEntencia para introducir los datos
         $sentencia = "INSERT INTO PRL VALUES ('$id', '$titulo','$autor','$prioridad','$afectado','$detalles','$fecha')";
         echo (mysqli_query(conexionBaseDatos(),$sentencia)) ? 
-        '<div class="confirmacion alert alert-success m-3 col-3" role="alert">
+        '<div class="confirmacion alert alert-primary m-3 col-3" role="alert">
             Alta realizada correctamente. <a href="index.php" class="alert-link">Volver</a>.
             <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>' : 
@@ -331,11 +220,9 @@
                        <td><button type="button" class="btn btn-info btn-sm text-white d-none d-md-block">PENDIENTE</button></td>
                         <td>
                             <div class="row align-items-center">
+                                
                                 <div class="col">
-                                    <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
-                                </div>
-                                <div class="col">
-                                    <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
+                                    <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ELIMINAR</button></a>
                                 </div>
                             </div>
                         </td>
@@ -343,93 +230,7 @@
             print '</tr>';
         }
     }
-
-    //Está en el index
-    /* function ultimosRegistros($tipo) {
-        $sentencia = "SELECT ID, asunto,prioridad, fecha FROM " . $tipo . " WHERE FECHA = (SELECT MAX(FECHA) FROM " . $tipo.")" ;
-        $resultado = mysqli_query(conexionBaseDatos(), $sentencia);
-
-        while($registro = mysqli_fetch_row($resultado)){
-            print '<tr>';
-                foreach($registro as $valor){
-                    print '<td class=' . $valor .'>'.$valor.'</td>';
-                }
-                print '<td>' . $tipo . '</td>
-                       <td><button type="button" class="btn btn-info btn-sm text-white d-none d-md-block">PENDIENTE</button></td>
-                        <td>
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tipo.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
-                                </div>
-                                <div class="col">
-                                    <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tipo.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
-                                </div>
-                            </div>
-                        </td>
-                ';
-            print '</tr>';
-        }
-    } */
-
-    //Esta en informes_fechas
-    /* function resultadoBusqueda($tabla,$fechaInicio,$fechaFinal) {
-        $sentencia = "SELECT ID,ASUNTO, FECHA, PRIORIDAD FROM ".$tabla." WHERE FECHA >= '$fechaInicio' AND FECHA <= '$fechaFinal'";
-        $resultado = mysqli_query(conexionBaseDatos(),$sentencia);
-        
-        while ($registro = mysqli_fetch_row($resultado)){
-                
-            echo "<tr>";
-            //Muestra cada uno de los valores de los campos de registro
-            foreach ($registro as $valor){
-                echo "<td class='campo ".$valor."'><a href='ampliar.php'>" . $valor . "</a></td>";
-            }
-
-            print '<td>' . $tabla . '</td><td>
-                <div class="row align-items-center">
-                    <div class="col">
-                        <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
-                    </div>
-                    <div class="col">
-                        <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
-                    </div>
-                </div>
-            </td>';
-
-
-            echo "</tr>"; 
-        }
-        
-    } */
-
-    /* function resultadoBusquedaPrioridad($tabla,$prioridad) {
-        $sentencia = "SELECT ID,ASUNTO, FECHA, PRIORIDAD FROM ".$tabla." WHERE PRIORIDAD = '$prioridad'";
-        $resultado = mysqli_query(conexionBaseDatos(),$sentencia);
-        
-        while ($registro = mysqli_fetch_row($resultado)){
-                
-            echo "<tr>";
-            //Muestra cada uno de los valores de los campos de registro
-            foreach ($registro as $valor){
-                echo "<td class='campo ".$valor."'><a href='ampliar.php'>" . $valor . "</a></td>";
-            }
-
-            print '<td>' . $tabla . '</td><td>
-                <div class="row align-items-center">
-                    <div class="col">
-                        <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
-                    </div>
-                    <div class="col">
-                        <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
-                    </div>
-                </div>
-            </td>';
-
-
-            echo "</tr>"; 
-        }
-        
-    } */
-    
+     
     function desglose($prueba,$id){
         $sentencia = "SELECT * FROM ".$prueba." WHERE ID = '$id'";
         $resultado = mysqli_query(conexionBaseDatos(),$sentencia);

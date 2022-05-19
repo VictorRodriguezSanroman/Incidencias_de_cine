@@ -1,4 +1,7 @@
 <?php
+    if(!isset($_POST['informes'] )){
+        header('Location:' . getenv('HTTP_REFERER'));
+    }
     (isset($_POST['informes'])) ? $tipoInformes = $_POST['informes'] : $tipoInformes = $_GET['campo'];
 
     setcookie('informesPrueba',$tipoInformes,0);

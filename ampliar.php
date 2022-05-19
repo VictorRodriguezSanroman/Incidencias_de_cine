@@ -1,11 +1,8 @@
 <?php
     include_once 'head.php';
     include_once 'nav.php';
-    compruebaCookie();
-    
-    $id = $_GET['id'];
-
-    
+    compruebaCookie(); 
+    $id = $_GET['id'];  
 ?>
 <main class="container-fluid">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

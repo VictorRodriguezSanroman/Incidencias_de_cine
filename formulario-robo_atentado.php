@@ -1,5 +1,8 @@
 <?php
     include_once 'head.php';
+    if(!isset($_COOKIE['registro'])){
+        header('Location:' . getenv('HTTP_REFERER'));
+    }
     include_once 'nav.php';
     compruebaCookie();
 
@@ -9,10 +12,16 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Registro de incidencias</h1>
     </div>
+
+    <?php
+        if(isset($_POST['botonDeArchivar'])){ 
+            registroRoboAtentado();
+        }
+    ?>
     <form method="post" class="form" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="titulo"class="h5 form-label">Título de la incidencia:</label>
-            <input type="text" class="form-control" placeholder="<?php echo $eleccion; ?>" id="titulo" name="titulo">
+            <input type="text" class="form-control" placeholder="<?php echo $eleccion; ?>" id="titulo" name="titulo" required>
         </div>
         <div class="mb-3">
             <label for="fecha"class="h5 form-label">Fecha de lo ocurrido:</label>
@@ -20,7 +29,7 @@
         </div>
         <div class="mb-3">
             <label for="autor"class="h5 form-label">Persona que registra la incidencia:</label>
-            <input type="text" class="form-control" id="autor" name="autor">
+            <input type="text" class="form-control" id="autor" name="autor" required>
         </div>
         <div class="mb-3">
             <label for="prioridad" class="h5 form-label">Prioridad:</label>
@@ -46,8 +55,6 @@
 </main>
 
 <?php 
-    if(isset($_POST['botonDeArchivar'])){ 
-        registroRoboAtentado();
-    }
+    
     include_once 'footer.php';
 ?>

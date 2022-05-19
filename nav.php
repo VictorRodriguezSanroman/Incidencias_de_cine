@@ -1,5 +1,5 @@
-<body id="cuerpo" class="bg-light">
-<nav id="barra" class="navbar nav-tabs navbar-expand-lg navbar-light bg-primary fixed-top">
+<body id="cuerpo">
+<nav id="barra" class="navbar nav-tabs navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php" style="margin: 0 auto;">
                 <img class="img-fluid" style="max-width: 50px" src="img/logo.png" loading="lazy">     
@@ -52,9 +52,6 @@
                         </ul>
                     </li>
                 </ul>                 
-                <form class="d-flex" action="buscador.php" method="post">
-                    <input class="form-control me-2" type="search" placeholder="Escribe palabras clave" aria-label="Search" name="palabraClave">
-                </form>
                 <div id="prueba">Bienvenido <?php print $_COOKIE['acceso'] . '<a href="borrar_cookie.php"> (Salir)</a>'; ?></div>
             </div> 
         </div>

@@ -1,7 +1,8 @@
 <?php
     include_once 'head.php';
-    include_once 'nav.php';
     compruebaCookie(); 
+    include_once 'nav.php';
+
 ?>
 
 <main class="container-fluid">
@@ -10,6 +11,9 @@
     </div>
     <div class="row p-4">
         <div class="col-sm-8 bg-white p-3" style="margin-right:30px;">
+            <div class="border-bottom text-black">
+                <h5>Total de registros</h5>
+            </div><br>
             <span class="text-secondary">Imagen y sonido</span>
                 <div class="progress mb-3" style="height: 15px;">
                     <div class="progress-bar" role="progressbar" style="width: <?php echo calculoPorcentaje("IMAGEN",$campos) ?>%;" aria-valuenow="<?php echo calculoPorcentaje("IMAGEN",$campos) ?>" aria-valuemin="0" aria-valuemax="100"><?php print numeroRegistros("IMAGEN") ?></div>
@@ -35,7 +39,11 @@
                   </div>
         </div>
         <div class="col bg-white p-3" >
+        <div class="border-bottom text-black">
+                <h5>Registra o visualiza tus incidencias</h5>
+            </div>
             <div class="row p-3">
+            
                 <div class="col">
                     <span>Nueva incidencia</span>
                 </div>
@@ -53,7 +61,7 @@
     <div class="row p-4">
         <div class="col-sm bg-white p-3">
             <div class="border-bottom text-black">
-                <h4>Últimas incidencias registradas</h4>
+                <h5>Últimas incidencias registradas</h5>
             </div>
             <div class="bd-example">
                 <table class="table table-responsive">
@@ -73,7 +81,6 @@
                                 
                                     $sentencia = "SELECT ID, asunto,prioridad, fecha FROM " . $titulo . " WHERE FECHA = (SELECT MAX(FECHA) FROM " . $titulo.")" ;
                                     resultadoTablas($titulo,$sentencia);
-                                /* ultimosRegistros($titulo); */
                             }
                         ?>
                     </tbody>

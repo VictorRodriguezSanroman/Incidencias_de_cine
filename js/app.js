@@ -6,6 +6,7 @@ window.addEventListener('load',()=>{
                   '"Cada momento de prevención evita un accidente laboral"',
                   '"No son los individuos los que hacen las empresas exitosas, sino los equipos"',
                   '"La razón más grande de tener seguiridad en el trabajo puede ser la más pequeña"',
+                  '"El hombre cauto jamás deplora el mal presente; emplea el presente en prevenir las aflicciones futuras"',
                   '"Mejor es prevenir que curar"'];
 
     setInterval(() => {
@@ -34,5 +35,25 @@ window.addEventListener('load',()=>{
     for (let i = 0;i < priorVerde.length;i++) {
         priorVerde[i].innerHTML = '<button class="btn btn-success btn-sm text-white d-none d-md-block">BAJA</button>';
     }
+
+
+    //Funcion que hace desaparecer el div transcurridos 3000 milisegundos!
+    $(document).ready(function() {
+        setTimeout(function() {
+            // Declaramos la capa mediante una clase para ocultarlo
+            $(".confirmacion").fadeOut(1500);
+        },2000);
+    });
+
+
+
+
+
+
+
+
+
+
+
     
 })

@@ -9,7 +9,7 @@
     </div>
 
             <div class="bd-example">
-                <table class="table table-responsive table-striped">
+                <table class="table table-responsive table-striped bg-light">
                     <thead>
                     <tr class="text-primary">
                       <th scope="col">#ID</th>

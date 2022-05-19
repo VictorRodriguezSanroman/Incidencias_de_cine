@@ -5,25 +5,16 @@
 <body id="fondo">
     <form id="logeo" method="post">
         <div>
-            <input type="text" name="usuario" id="usuario" placeholder="usuario">
+            <input type="text" name="usuario" id="usuario" placeholder="usuario" autocomplete="off" required>
         </div>
         <div>
-            <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña">
+            <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña" required>
         </div>
         <div>
             <button class="btn btn-primary">log in</button>
             
         </div>
     </form>
-    <?php
-    if(isset($_GET['firstName'])){
-        $nombre = $_GET['firstName'];
-    }else{
-        $nombre = NULL;
-    }
-    ?>
-    <a href="nuevo_usuario.php"><button class="btn btn-primary">Nuevo Usuario</button></a>
-
     <?php
         if(count($_POST) > 0){
             $usuario = $_POST['usuario'];

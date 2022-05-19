@@ -1,26 +1,44 @@
 <?php
+    if(!isset($_COOKIE['registro'])){
+        header('Location:' . getenv('HTTP_REFERER'));
+    }
     include_once 'head.php';
-    include_once 'nav.php';
     compruebaCookie();
+    include_once 'nav.php';
+    
 
-    /* (isset($_POST['incidencia'])) ? $eleccion = $_POST['incidencia'] : $eleccion = ''; */
+
 ?>
 <main class= "container-fluid">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Registro de incidencias</h1>
     </div>
+    <?php
+        if(isset($_POST['botonDeArchivar'])){
+            if($_COOKIE['registro'] == 'Problemas en la imagen' || $_COOKIE['registro'] == 'Problemas de Sonido'){
+                alta_incidente('IMAGEN', 'IM-1');
+            }
+            if($_COOKIE['registro'] == 'Baño averiado' || $_COOKIE['registro'] == 'Goteras' || $_COOKIE['registro'] == 'Fallo eléctrico'){
+                alta_incidente('INSTALACIONES','IN-1');
+            }
+            if($_COOKIE['registro'] == 'Caída' || $_COOKIE['registro'] == 'Intoxicación'){
+                alta_incidente('CLIENTES','CL-1');
+            }    
+            
+        }
+    ?>
     <form method="post" class="form" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="titulo"class="h5 form-label">Título de la incidencia:</label>
-            <input type="text" class="form-control" placeholder="<?php echo $_COOKIE['registro']; ?>" id="titulo" name="titulo">
+            <input type="text" class="form-control" placeholder="<?php echo $_COOKIE['registro']; ?>" id="titulo" name="titulo" required>
         </div>
         <div class="mb-3">
             <label for="fecha"class="h5 form-label">Fecha de lo ocurrido:</label>
-            <input type="date" class="form-control" name="fecha" id="fecha" value="<?php echo date("Y-m-d"); ?>">
+            <input type="date" class="form-control" name="fecha" id="fecha" value="<?php echo date("Y-m-d"); ?>" required>
         </div>
         <div class="mb-3">
             <label for="autor"class="h5 form-label">Persona que registra la incidencia:</label>
-            <input type="text" class="form-control" id="autor" name="autor">
+            <input type="text" class="form-control" id="autor" name="autor" required>
         </div>
         <div class="mb-3">
             <label for="prioridad" class="h5 form-label">Prioridad:</label>
@@ -34,7 +52,7 @@
             <label for="sala" class="h5 form-label">Lugar de la incidencia:</label><br>
             <div class="cuatroRadios">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="lugarIncidente" id="hall" value="Hall">
+                    <input class="form-check-input" type="radio" name="lugarIncidente" id="hall" value="Hall" checked>
                     <label for="lugarIncidente">Hall</label>
                 </div>
                 <div class="form-check">
@@ -84,17 +102,6 @@
 </main>
 
 <?php 
-    if(isset($_POST['botonDeArchivar'])){
-        if($_COOKIE['registro'] == 'Problemas en la imagen' || $_COOKIE['registro'] == 'Problemas de Sonido'){
-            alta_incidente();
-        }
-        if($_COOKIE['registro'] == 'Baño averiado' || $_COOKIE['registro'] == 'Goteras' || $_COOKIE['registro'] == 'Fallo eléctrico'){
-            registroInstalaciones();
-        }
-        if($_COOKIE['registro'] == 'Caída' || $_COOKIE['registro'] == 'Intoxicación'){
-            registroClientes();
-        }    
-        
-    }
+    
     include_once 'footer.php';
 ?>

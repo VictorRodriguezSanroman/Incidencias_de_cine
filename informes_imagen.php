@@ -32,17 +32,19 @@
 
             if(mysqli_query(conexionBaseDatos(),$sentencia)){
     ?>
-        <table class="table table-striped">
-
-                    <tr>
-                    <?php
-                        //Cabecera de la tabla
-                        $cabecera = array("ID","ASUNTO","FECHA","PRIORIDAD", "ACCIONES");
-                            foreach($cabecera as $dato){
-                                echo "<td class='fw-bold '>" . $dato . "</td>";
-                            }                
-                    ?>
+        <table class="table table-striped bg-light">
+                <thead>
+                    <tr class="text-primary">
+                        <?php
+                            //Cabecera de la tabla
+                            $cabecera = array("#ID","Asunto","Fecha","Prioridad", "Estado","Acciones");
+                                foreach($cabecera as $dato){
+                                    echo "<th scope='col'>" . $dato . "</th>";
+                                }                
+                        ?>
                     </tr>
+                </thead>
+                    
     <?php
                     while ($registro = mysqli_fetch_row($resultado)){
                             
@@ -51,14 +53,11 @@
                         foreach ($registro as $valor){
                             echo "<td class='campo ".$valor."'><a href='ampliar.php?id=". $registro[0] ."'>" . $valor . "</a></td>";
                         }
-
+                        echo '<td><button type="button" class="btn btn-info btn-sm text-white d-none d-md-block">PENDIENTE</button></td>';
                         echo '<td>
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <a href="editar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-success btn-sm d-none d-lg-block">EDITAR</button></a>
-                                </div>
-                                <div class="col">
-                                    <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ARCHIVAR</button></a>
+                                    <a href="borrar_incidencia.php?id='.$registro[0].'&tabla='.$tabla.'"><button type="button" class="btn btn-outline-danger btn-sm d-none d-lg-block">ELIMINAR</button></a>
                                 </div>
                             </div>
                         </td>';

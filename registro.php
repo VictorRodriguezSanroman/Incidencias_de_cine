@@ -11,11 +11,11 @@
         <!-- Incidencias en la proyección -->
         <div class="col-lg m-4 parrilla">
                 <form action="cookie_formularios.php" method="post" enctype="multipart/form-data" class="botonesPrincipales">
-                    <button class="botonIcons">
-                        <img type="submit" src="img/icons/projector.png" class="iconosIndex" alt="Proyector">
+                    <button class="botonIcons" >
+                        <img id="alta" type="submit" src="img/icons/projector.png" class="iconosIndex" alt="Proyector">
                     </button>
                     <br>
-                    <select name="incidencia" class="form-select" aria-label="Default select example" id="proyector">
+                    <select name="incidencia" class="form-select" aria-label="Default select example" id="proyector" required ="on">
                         <option selected disabled>Selecciona una opción</option>
                         <option value="Problemas en la imagen">Imagen</option>
                         <option value="Problemas de Sonido">Sonido</option>

@@ -1,5 +1,8 @@
 <?php
     include_once 'head.php';
+    if(!isset($_COOKIE['registro'])){
+        header('Location:' . getenv('HTTP_REFERER'));
+    }
     include_once 'nav.php';
     compruebaCookie();
 
@@ -9,6 +12,11 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Registro de incidencias</h1>
     </div>
+    <?php
+        if(isset($_POST['botonDeArchivar'])){
+            registroPRL();
+        }
+    ?>
     <form method="post" class="form"  enctype="multipart/form-data">
         <div class="mb-3">
             <label for="titulo"class="h5 form-label">Título de la incidencia:</label>
@@ -46,8 +54,5 @@
 </main>
 
 <?php 
-    if(isset($_POST['botonDeArchivar'])){
-        registroPRL();
-    }
     include_once 'footer.php';
 ?>

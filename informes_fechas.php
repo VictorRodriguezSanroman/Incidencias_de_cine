@@ -1,11 +1,16 @@
 <?php
     include_once 'head.php';
-    include_once 'nav.php';
     compruebaCookie();
+    include_once 'nav.php';
+    if(isset($_COOKIE['informePrueba'])){
+        $tituloFechas = $_COOKIE['informePrueba'];
+    }else{
+        $tituloFechas = 'Fechas';
+    }
 ?>
 <main class="container-fluid" style="min-height:700px;">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Informes - Incidencias por <?php print $_COOKIE['informesPrueba']; ?></h1>
+            <h1 class="h2">Informes - Incidencias por <?php print $tituloFechas; ?></h1>
     </div>
     <div>
         <form action="informes_fechas.php" class="form-inline mb-2" METHOD="post">
@@ -51,7 +56,7 @@
                 <h4 class="text-center">Periodo del <?php echo $diaInicio . '/' . $mesInicio . '/' . $añoInicio; ?> al <?php echo $diaFinal. '/' . $mesFinal . '/' . $añoFinal; ?></h4>
             </div>
             <div class="bd-example">
-                <table class="table table-responsive table-striped">
+                <table class="table table-responsive table-striped bg-light">
                     <thead>
                     <tr class="text-primary">
                       <th scope="col">#ID</th>
