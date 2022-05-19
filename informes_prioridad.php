@@ -26,7 +26,6 @@
                             foreach($campos as $campo){
                                 $sentencia = "SELECT ID,ASUNTO, FECHA, PRIORIDAD FROM ".$campo." WHERE PRIORIDAD = '$prioridad'";
                                 resultadoTablas($campo,$sentencia);
-                                /* resultadoBusquedaPrioridad($campo,$_COOKIE['informesPrueba']); */
                             }
                         ?>
                     </tbody>

@@ -111,14 +111,6 @@
         </div>
         
     </div>
-    <!-- <div class="row">
-        <div class="col-lg m-4 parrilla">
-            <img src="img/icons/projector.svg" class="iconosIndex" alt="Proyector">
-        </div>
-        <div class="col-lg m-4 parrilla">
-            <img src="img/icons/projector.svg" class="iconosIndex" alt="Proyector">
-        </div>
-    </div> -->
 </main>
 <?php
     include_once 'footer.php';  

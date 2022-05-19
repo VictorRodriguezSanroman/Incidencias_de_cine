@@ -11,16 +11,6 @@
             <h1 class="h2">Informes - Incidencias por <?php print $_COOKIE['informesPrueba']; ?></h1>
     </div>
     <?php
-
-    //Utilizamos if para que, en función de la cookie almacenada nos lleve al informe que deseamos o nos quedemos en este
-/*     if ($_COOKIE['informesPrueba'] == 'fechas'){
-        header('Location:informes_fechas.php');
-    }
-    if ($_COOKIE['informesPrueba'] == 'Alta'|| $_COOKIE['informesPrueba'] == 'Media' || $_COOKIE['informesPrueba'] == 'Baja'){
-
-        header('Location:informes_prioridad.php');
-    } */
-    
     buscaRegistros($_COOKIE['informesPrueba']);
         
         function buscaRegistros($tabla){

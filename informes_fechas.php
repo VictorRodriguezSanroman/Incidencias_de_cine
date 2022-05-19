@@ -72,7 +72,6 @@
                             foreach($campos as $campo){
                                 $sentencia = "SELECT ID,ASUNTO, FECHA, PRIORIDAD FROM ".$campo." WHERE FECHA >= '$fechaInicio' AND FECHA <= '$fechaFinal'";
                                 resultadoTablas($campo,$sentencia);
-                                /* resultadoBusqueda($campo,$fechaInicio,$fechaFinal); */
                             }
                         ?>
                     </tbody>
