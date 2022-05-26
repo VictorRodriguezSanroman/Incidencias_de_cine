@@ -5,7 +5,7 @@ window.addEventListener('load',()=>{
     let frases = ['"Evitar los accidentes depende de ti"',
                   '"Cada momento de prevención evita un accidente laboral"',
                   '"No son los individuos los que hacen las empresas exitosas, sino los equipos"',
-                  '"La razón más grande de tener seguiridad en el trabajo puede ser la más pequeña"',
+                  '"La razón más grande de tener seguridad en el trabajo puede ser la más pequeña"',
                   '"El hombre cauto jamás deplora el mal presente; emplea el presente en prevenir las aflicciones futuras"',
                   '"Mejor es prevenir que curar"'];
 

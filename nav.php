@@ -34,7 +34,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"  href="informes_fechas.php">
-                            <img src="https://img.icons8.com/dotty/25/000000/employee-card.png"/>   
+                            <img src="https://img.icons8.com/dotty/25/000000/combo-chart.png"/>  
                             Informe por rango de fechas
                         </a>
                     </li>
